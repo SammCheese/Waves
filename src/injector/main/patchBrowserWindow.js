@@ -22,8 +22,9 @@ app.once('ready', () => {
   if (!sentryBlocked) {
     session.defaultSession.webRequest.onBeforeRequest((details, callback) => {
       const url = details.url;
-      const isAnalytics = url.match(/google(?:-analytics)|(?:apis)|(?:trackjs)/i)
-      if (isAnalytics) {
+      const isAnalytics = url.match(/(google(?:-analytics)|(?:apis)|(?:tagmanager))|(?:trackjs)/i)
+      const isEventAnalytics = details.method === 'POST' && url === 'https://et.tidal.com/api/events'
+      if (isAnalytics || isEventAnalytics) {
         sentryBlocked = true;
         return callback({ cancel: true });
       }
