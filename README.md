@@ -1,3 +1,5 @@
+# DEPRECATED
+
 # Waves, a (VERY) simple mod for the [TIDAL](https://tidal.com) client
 
 Features (so far)
